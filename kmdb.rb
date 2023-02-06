@@ -78,11 +78,18 @@ Studio.destroy_all
 # Generate models and tables, according to the domain model.
 # TODO!
 
-#in terminal, generate the model and tables
+#1. in terminal, generate the model and tables
 # rails generate model Studio
 # rails generate model Movie
 # rails generate model Actor
 # rails generate model Role
+
+# 2. open newly generated files
+
+# 3. in the db/migrate file, add relevant columns matching our domain model
+
+# 4. in terminal, execute the migration file
+# rails db:migrate
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
@@ -291,17 +298,6 @@ puts ""
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
-# number = 0
-# loop do 
-#    if number < Movie.all.size
-#    movies = Movie.where({"id"=> number})
-#    puts movies["id"] 
-#    puts movies["title"]
-#    puts movies["year_released"]
-#    puts movies ["studio_id"] 
-#    number += 1
-#    end
-#end
 
 movies_all = Movie.all
 for movie in movies_all
