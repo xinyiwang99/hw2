@@ -279,10 +279,10 @@ role["actor_id"] = 11
 role["character_name"] = "Selina Kyle"
 role.save 
 
-puts Movie.all.inspect
-puts Studio.all.inspect
-puts Role.all.inspect
-puts Actor.all.inspect
+#puts Movie.all.inspect
+#puts Studio.all.inspect
+#puts Role.all.inspect
+#puts Actor.all.inspect
 
 # Prints a header for the movies output
 puts "Movies"
@@ -291,9 +291,25 @@ puts ""
 
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
+# number = 0
+# loop do 
+#    if number < Movie.all.size
+#    movies = Movie.where({"id"=> number})
+#    puts movies["id"] 
+#    puts movies["title"]
+#    puts movies["year_released"]
+#    puts movies ["studio_id"] 
+#    number += 1
+#    end
+#end
 
-movie_1 = Movie.find_by({"id"=>1})
-puts movie_1
+movies_all = Movie.all
+for movie in movies_all
+    studios = Studio.where({"id" => movie["studio_id"]})
+    for studio in studios
+    puts "#{movie["title"]} #{movie["year_released"]} #{movie["rated"]} #{studio["name"]}"
+    end
+end
 
 # Prints a header for the cast output
 puts ""
@@ -303,3 +319,14 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+roles_all = Role.all
+
+for role in roles_all
+    movies = Movie.where({"id"=> role["movie_id"]})
+    actors = Actor.where({"id"=> role["actor_id"]})
+    for movie in movies
+        for actor in actors
+            puts "#{movie["title"]} #{actor["name"]} #{role["character_name"]}"
+        end
+    end
+end
